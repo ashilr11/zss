@@ -20,10 +20,15 @@ import org.springframework.web.client.RestTemplate;
 
 import com.example.zss.model.Card;
 import com.example.zss.model.Purchase;
+import com.example.zss.repository.BookRepo;
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper; 
-import com.fasterxml.jackson.databind.ObjectWriter; 
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 @RestController
 public class PurchaseController {
@@ -33,6 +38,9 @@ public class PurchaseController {
 	@Autowired
 	private RestTemplate restTemplate; 
 	
+	@Autowired
+	private BookRepo bookRepo;
+	
 	@PostMapping(path="/purchase")
 	public String makePurchase(@RequestParam("title") String title, @RequestParam("cardID") String cardID, @RequestParam("cardExpiry") String cardExpiry) {
 		final String url = "https://lab.v.co.zw/interview/api/transaction";
@@ -40,10 +48,11 @@ public class PurchaseController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setBearerAuth(bearerToken);
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		
-		Card card = new Card("1234560000000001", new Date(2020-01-01));
+
+		Card card = new Card(cardID, cardExpiry);
+
 		Purchase purchase = new Purchase();
-		purchase.setAmount(123);
+		purchase.setAmount(bookRepo.findByTitle(title).get(0).getPrice());
 		purchase.setCard(card);
 		HttpEntity<Purchase> requestEntity = new HttpEntity<Purchase>(purchase, headers);
 

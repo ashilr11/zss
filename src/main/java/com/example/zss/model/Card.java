@@ -9,9 +9,9 @@ import javax.persistence.Id;
 public class Card implements Serializable {
 	
 	private String id;
-	private Date expiry;
+	private String expiry;
 	
-	public Card(String id, Date expiry) {
+	public Card(String id, String expiry) {
 		super();
 		this.id = id;
 		this.expiry = expiry;
@@ -25,11 +25,11 @@ public class Card implements Serializable {
 		this.id = id;
 	}
 
-	public Date getExpiry() {
+	public String getExpiry() {
 		return expiry;
 	}
 
-	public void setExpiry(Date expiry) {
+	public void setExpiry(String expiry) {
 		this.expiry = expiry;
 	}
 
