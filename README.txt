@@ -21,7 +21,7 @@ How to run:
     
     Open in STS or Eclipse with Spring plugins
     
-    Run as a spring boot application
+    Import as Spring Boot Maven application and run
     
     HTTP Requests you can do using PostMan:
     
@@ -40,6 +40,8 @@ How to run:
 					        "catId": 1
 					    }
 					}	
+					
+		 	Or insert directly into postgresql using -> INSERT INTO categories (cat_id, title) VALUES (5, 'sci-fi');
     	
     	4. Retrieve all categories using GET -> http://localhost:8080/categories
     	
@@ -51,5 +53,6 @@ How to run:
 	        				"title": "thriller",
 	        				"catId": 1
 	    				}
+    		Or insert directly into postgresql using -> INSERT INTO books (book_id, title, description, price, cat_id) VALUES (8, 'BookName', 'yes', 34.69, 4);
     				
     	7. Purchase a book using POST with query parameters title (book title), cardID and cardExpiry, url -> http://localhost:8080/purchase?title=BookName&cardID=1234560000000001&cardExpiry=2020-01-01
