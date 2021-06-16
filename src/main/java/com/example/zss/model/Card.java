@@ -1,13 +1,10 @@
 package com.example.zss.model;
 
 import java.io.Serializable;
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 public class Card implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String expiry;
 	
@@ -37,6 +34,4 @@ public class Card implements Serializable {
 	public String toString() {
 		return "Card [id=" + id + ", expiry=" + expiry + "]";
 	}
-	
-	
 }

@@ -1,21 +1,15 @@
 package com.example.zss.model;
 
 import java.io.Serializable;
-import java.nio.charset.Charset;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
 import java.util.Random;
-import java.util.TimeZone;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 public class Purchase implements Serializable {
 	
-	
+	private static final long serialVersionUID = 1L;
 	private String type = "PURCHASE";
 	private String extendedType = "NONE";
 	private float amount;
@@ -28,19 +22,22 @@ public class Purchase implements Serializable {
 	public Purchase() {
 		this.type = "PURCHASE";
 		this.extendedType = "NONE";
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-		created = df.format(new Date());;
 		
+		// Get current Date and Time and set it
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+		created = df.format(new Date());
+		
+		// Generate a random 10 length alphanumeric reference number 
 		int leftLimit = 48; // numeral '0'
 	    int rightLimit = 122; // letter 'z'
 	    int targetStringLength = 10;
 	    Random random = new Random();
-
 	    reference = random.ints(leftLimit, rightLimit + 1)
 	      .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
 	      .limit(targetStringLength)
 	      .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
 	      .toString();
+	    
 	    additionalData = null;
 	    narration = "this is a narration";
 
@@ -95,7 +92,6 @@ public class Purchase implements Serializable {
 		return narration;
 	}
 
-	
 	public void setNarration(String narration) {
 		this.narration = narration;
 	}

@@ -13,13 +13,14 @@ import javax.persistence.Table;
 public class Book {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int book_id;
 	private String title;
 	private String description;
 	private float price;
 	@ManyToOne
-	@JoinColumn(name="cat_id", nullable=false, insertable=false, updatable=false)
-	private Category category;
+	@JoinColumn(name="cat_id", nullable=false, insertable=true, updatable=true)
+	private Category category; // One book has one category
 	
 	public Book() {
 		super();
@@ -78,6 +79,5 @@ public class Book {
 	public String toString() {
 		return "Book [book_id=" + book_id + ", title=" + title + ", description=" + description + ", price=" + price + ", category=" + category
 				+ "]";
-	}
-	
+	}	
 }
