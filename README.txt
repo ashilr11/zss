@@ -1,8 +1,4 @@
-Hi there,
-
 Assumptions I've made: Searches for books are only done using title. Application considered as a happy day scenario ie. only correct parameters will work
-
-If I had extra time: Would have been able to search the whole book object. Would have added exceptions to handle wrong fields and give output responses etc. 
 
 Setup application.properties file by adding this to it:
 
